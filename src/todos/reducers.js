@@ -28,19 +28,15 @@ export const todos = (state = [], action) => {
 
 	switch (type) {
 		case CREATE_TODO: {
-			const { text } = payload;
-			const newTodo = {
-				text,
-				isCompleted: false,
-			};
+			const { todo } = payload;
 
-			return state.concat(newTodo); // dont mutate the state.
+			return state.concat(todo); // dont mutate the state.
 		}
 
 		case REMOVE_TODO: {
-			const { text } = payload;
+			const { todo: todoToRemove } = payload;
 
-			return state.filter((todo) => todo.text !== text);
+			return state.filter((todo) => todo.id !== todoToRemove.id);
 		}
 
 		case COMPLETE_TODO: {
@@ -51,6 +47,13 @@ export const todos = (state = [], action) => {
 			);
 		}
 
+		case LOAD_TODOS_SUCCESS: {
+			const { todos } = payload;
+			return todos;
+		}
+
+		case LOAD_TODOS_IN_PROGRESS:
+		case LOAD_TODOS_FAILURE:
 		default:
 			return state; // always return unmodified state as default
 	}

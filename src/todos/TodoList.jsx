@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import NewTodoForm from "./NewTodoForm";
 import TodoListItem from "./TodoListItem";
-import { loadTodos } from "./thunks"; // can call thunks, thunks can call other thunks or actions
+import { loadTodos, removeTodoRequst } from "./thunks"; // can call thunks, thunks can call other thunks or actions
 import { connect } from "react-redux";
-import { removeTodo, completeTodo } from "./actions"; // actions take a type and payload so reducer can make state changes
+import { completeTodo } from "./actions"; // actions take a type and payload so reducer can make state changes
 import "./TodoListItem.css";
 
 const TodoList = ({
@@ -43,7 +43,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-	onRemovePressed: (text) => dispatch(removeTodo(text)),
+	onRemovePressed: (id) => dispatch(removeTodoRequst(id)),
 	onCompletePressed: (text) => dispatch(completeTodo(text)),
 	startLoadingTodos: () => dispatch(loadTodos()),
 });
