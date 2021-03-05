@@ -40,10 +40,10 @@ export const todos = (state = [], action) => {
 		}
 
 		case COMPLETE_TODO: {
-			const { text } = payload;
+			const { todo: completedTodo } = payload;
 
 			return state.map((todo) =>
-				todo.text === text ? { ...todo, isCompleted: true } : todo
+				todo.id === completedTodo.id ? completedTodo : todo
 			);
 		}
 

@@ -22,9 +22,9 @@ export const removeTodo = (todo) => ({
 // action type
 export const COMPLETE_TODO = "COMPLETE_TODO";
 // action creator
-export const completeTodo = (text) => ({
+export const completeTodo = (todo) => ({
 	type: COMPLETE_TODO,
-	payload: { text },
+	payload: { todo },
 });
 
 export const LOAD_TODOS_IN_PROGRESS = "LOAD_TODOS_IN_PROGRESS";

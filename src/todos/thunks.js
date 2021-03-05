@@ -4,6 +4,7 @@ import {
 	loadTodosFailure,
 	createTodo,
 	removeTodo,
+	completeTodo,
 } from "./actions";
 
 export const loadTodos = () => async (dispatch, getState) => {
@@ -12,7 +13,7 @@ export const loadTodos = () => async (dispatch, getState) => {
 
 	try {
 		dispatch(loadTodosInProgress());
-		const response = await fetch("http://localhost:8080/todos-delay");
+		const response = await fetch("http://localhost:8080/todos");
 		const todos = await response.json();
 
 		console.log(todos);
@@ -51,6 +52,19 @@ export const removeTodoRequst = (id) => async (dispatch) => {
 	} catch (error) {
 		dispatch(displayAlert(error));
 	}
+};
+
+export const completeTodoRequest = (id) => async (dispatch) => {
+	try {
+		const response = await fetch(
+			`http://localhost:8080/todos/${id}/completed`,
+			{ method: "POST" }
+		);
+
+		const updatedTodo = await response.json();
+
+		dispatch(completeTodo(updatedTodo));
+	} catch (e) {}
 };
 
 export const displayAlert = (text) => () => {
