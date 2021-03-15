@@ -32,5 +32,6 @@ module.exports = {
 		publicPath: "http://localhost:3000/dist/",
 		hotOnly: true,
 	},
+	devtool: 'inline-source-map',
 	plugins: [new webpack.HotModuleReplacementPlugin()],
 };

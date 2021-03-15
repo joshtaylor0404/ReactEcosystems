@@ -25,6 +25,11 @@ export const loadTodos = () => async (dispatch, getState) => {
 };
 
 export const addTodoRequest = (text) => async (dispatch) => {
+	if(!text) {
+		alert('Must enter some text for your TODO!');
+		return;
+	}
+
 	try {
 		const body = JSON.stringify({ text });
 		const response = await fetch("http://localhost:8080/todos", {
