@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import NewTodoForm from "./NewTodoForm";
+import styled from "styled-components";
 import TodoListItem from "./TodoListItem";
 import {
 	getTodosLoading,
@@ -8,7 +9,11 @@ import {
 } from "./selectors";
 import { loadTodos, removeTodoRequst, completeTodoRequest } from "./thunks"; // can call thunks, thunks can call other thunks or actions
 import { connect } from "react-redux";
-import "./TodoListItem.css";
+
+const ListWrapper = styled.div`
+	max-width: 700px;
+	margin: auto;
+`;
 
 const TodoList = ({
 	completeTodos,
@@ -25,7 +30,7 @@ const TodoList = ({
 	const loadingMessage = <div>Loading todos...</div>;
 
 	const content = (
-		<div className="list-wrapper">
+		<ListWrapper>
 			<NewTodoForm />
 			<br />
 			<div>
@@ -50,7 +55,7 @@ const TodoList = ({
 					/>
 				))}
 			</div>
-		</div>
+		</ListWrapper>
 	);
 
 	return isLoading ? loadingMessage : content;
