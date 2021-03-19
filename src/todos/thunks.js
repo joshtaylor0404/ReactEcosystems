@@ -16,7 +16,6 @@ export const loadTodos = () => async (dispatch, getState) => {
 		const response = await fetch("http://localhost:8080/todos");
 		const todos = await response.json();
 
-		console.log(todos);
 		dispatch(loadTodosSuccess(todos));
 	} catch (error) {
 		dispatch(loadTodosFailure());
